@@ -6,17 +6,17 @@ This is a long assignment that deals with reading and manipulating the DOM using
 
 The overall goal is to implement features that listen for user actions that trigger showing/hiding/changing information on the page without performing a request/response refresh.
 
-### Clicking 'Like' should...
+@@@@### Clicking 'Like' should...
 
 - change the text of that link from 'Like' to 'Unlike'
 - update the number of likes that the post/comment has
 - alter the behavior of the link so it behaves as an Unlike link next time it's clicked
 
-### Clicking 'Comment' (in the `post__actions` area) should...
+@@@@### Clicking 'Comment' (in the `post__actions` area) should...
 
 - Move the cursor into the post's main comment form
 
-### Clicking 'Reply' or 'XX replies' should...
+@@@@### Clicking 'Reply' or 'XX replies' should...
 
 - show the replies area for that comment
 - toggle the behavior of the link so that if it's clicked again, it hides the replies area

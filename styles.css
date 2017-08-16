@@ -18,6 +18,11 @@ body{
   flex: 1;
 }
 
+.add__media__info{
+  margin-left: 12px;
+  flex: 1;
+}
+
 .profilePhoto{
   width: 36px;
 }
