@@ -28,7 +28,7 @@ The overall goal is to implement features that listen for user actions that trig
     - This includes changing the text of what used to be a 'Reply' link to now read, '1 replies' (or '1 reply', if you're ambitious).
 - add the comment to the correct location in the comments area
 
-### Clicking on someone's name should...
+@@@### Clicking on someone's name should...
 
 - show the modal window with their name as the title and their number of friends as the body
 

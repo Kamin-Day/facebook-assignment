@@ -26,6 +26,18 @@ window.addEventListener("load", function(){
       var commentArea = document.getElementsByTagName("textarea");
       commentArea[5].focus();
   }); 
+
+
+//// Share Button
+ var shareButton = document.getElementsByClassName(" action action--share");
+      shareButton[0].addEventListener("click", function (){
+          modal = document.getElementsByClassName("modal");
+          userName = document.getElementsByClassName("media__info");
+          modal[0].childNodes[1].childNodes[3].innerHTML = userName[0].childNodes[1].text ;
+          modal[0].style.display = "block"; 
+          postText = document.getElementsByClassName("post__body");
+          modal[0].childNodes[1].childNodes[5].innerHTML = postText[0].childNodes[1].innerHTML;  
+        });
 // comment Like Button
   var commentLikeButton = document.getElementsByClassName("comment__info");
       for (var e = 0; e < commentLikeButton.length; e++){
@@ -53,36 +65,40 @@ window.addEventListener("load", function(){
       }
    
 
-
-
-
-
+//OPENS MODAL WHEN a USER NAME IS CLICKED
     var userNames = document.getElementsByClassName("media__info");
       for (var e = 0; e < userNames.length; e++){
         userNames[e].childNodes[1].addEventListener("click", function() {
-        modal = document.getElementsByClassName("modal");
-       
+         modal = document.getElementsByClassName("modal");
+         userName = this.text;
+         modal[0].childNodes[1].childNodes[3].innerHTML = userName;
+         modal[0].childNodes[1].childNodes[5].innerHTML = "<p>" + userName + " has [x] friends.</p>";    
+         modal[0].style.display = "block"; 
+  
 
-            
-        alert ("Becky wants to smash")
-
-        modal[0].style.display = "block";
-
-   
-        
-      });
+        });
       }
 
-  
-    var modalClose = document.getElementsByClassName("modal__close");
-        modalClose[0].addEventListener("click", function() {
+  ///   CLOSES MODAL FROM BUTTON
+    var modalCloseButton = document.getElementsByClassName("modal__close");
+        modalCloseButton[0].addEventListener("click", function() {
                       modal = document.getElementsByClassName("modal");
                               modal[0].style.display = "none";
+        });
+
+  //// CLOSES MODAL FROM CLICKING BEHIND WINDOW
 
 
-
-  
-  });
+    var modalCloseBG = document.getElementsByClassName("modal");
+        modalCloseBG[0].addEventListener("click", function() {
+                  
+              debugger;
+          
+                if (event.target != modalCloseBG[0].childNodes[1]){
+                  modal[0].style.display = "none";
+                }
+            });
+   
    //    userNames[0].childNodes[1] <-- text inside
 
 //parseInt(this.innerHTML.replace("replies", ""))

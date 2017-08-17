@@ -85,16 +85,18 @@ body{
   background: rgba(0,0,0,0.5);
   position: fixed;
   z-index: 9998;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   top: 0;
   left: 0;
+  bottom: 0;
+  right: 0;
 }
+
 .modal__content{
   width: 600px;
   height: 400px;
   position: fixed;
-  z-index: 9999;
   left: 50%;
   top: 50%;
   margin-left: -300px;
@@ -102,6 +104,9 @@ body{
   background: #fff;
   border: 1px solid #ccc;
   padding: 30px;
+  z-index: 9999;
+  pointer-events: none;
+
 }
 .modal__close{
   float: right;
