@@ -9,6 +9,7 @@ window.addEventListener("load", function(){
 
 	var likeButton = document.getElementsByClassName("action action--like");
   	likeButton[0].addEventListener("click", function() {
+      event.preventDefault(); 
       var postCounter = document.getElementsByClassName("post__info");
       var currentLikes = parseFloat(postCounter[0].childNodes[1].innerHTML.replace("Likes", ""));
       if (likeButton[0].text == "Like"){
@@ -36,18 +37,83 @@ window.addEventListener("load", function(){
             alert("Whoops! Please enter your comment before submitting your post!");
           } else { 
             commentMessage = eventInfo.currentTarget.parentNode.childNodes[1].value;
-            alert(commentMessage);
-            newPost = eventInfo.currentTarget.parentElement.parentElement.parentNode.parentElement.childNodes[1];
-            newPost.childNodes[3].childNodes[2].text = commentMessage;
-            index = eventInfo.currentTarget.parentElement.parentElement.parentNode.parentElement.children.length - 1;
-           // eventInfo.currentTarget.parentElement.parentElement.parentNode.parentElement.insertBefore(newPost, eventInfo.currentTarget.parentElement.parentElement.parentNode.parentElement.lastElementChild);
-            eventInfo.currentTarget.parentElement.parentElement.parentNode.parentElement.appendChild(newPost); 
+           // alert(commentMessage);
+
+            var userImg = document.createElement("img");
+            userImg.setAttribute("src", "images/user.png");
+            userImg.setAttribute("alt", "Profile Image");
+            userImg.setAttribute("class", "profilePhoto");
+            var divCommentMedia = document.createElement("div");
+            divCommentMedia.setAttribute("class", "comment media");
+            var divMediaInfo = document.createElement("div");
+            divMediaInfo.setAttribute("class", "media__info");
+            var userNameLink = document.createElement("a");
+            var userName = document.createTextNode("Name 1");
+            userNameLink.appendChild(userName);
+            userNameLink.title = "Name 1";
+            userNameLink.href = "#";
+          //  userNameLink.appendChild(userName);
+            var commentText = document.createTextNode(" " + commentMessage);
+            var divCommentInfo = document.createElement("div");
+            divCommentInfo.setAttribute("class", "comment__info");
+            var likeLink = document.createElement("a");
+            var likeText = document.createTextNode("Like");
+            likeLink.appendChild(likeText);
+            likeLink.title = "Like";
+            likeLink.href = "#";
+            //likeLink.appendChild(likeText);
+            var replyText = document.createTextNode("Reply");
+            var replyLink = document.createElement("a");
+            // replyLink.appendChild(likeText);
+            replyLink.title = "Reply";
+            replyLink.href = "#";
+            replyLink.appendChild(replyText);
+            var commentSpan = document.createElement("span");
+            commentSpan.innerHTML = " 0 likes"
+            commentDate = document.createTextNode("Just now");
+            var spaceText = document.createTextNode("  ");
+            var linkBR = document.createTextNode(" ");
+            var spacerSpan = document.createElement("span");
+            spacerSpan.innerHTML = "&nbsp";
+
+
+            
+            divCommentMedia.appendChild(userImg);
+            divCommentMedia.appendChild(divMediaInfo);
+            divMediaInfo.appendChild(userNameLink);
+            divMediaInfo.appendChild(spaceText);
+            divMediaInfo.appendChild(commentText);
+            divMediaInfo.appendChild(divCommentInfo);
+            divCommentInfo.appendChild(likeLink);
+            divCommentInfo.appendChild(spacerSpan);
+            divCommentInfo.appendChild(replyLink);
+            divCommentInfo.appendChild(commentSpan);
+            divCommentInfo.appendChild(spaceText);
+            divCommentInfo.appendChild(commentDate);
+
+
+            var postLocation = eventInfo.currentTarget.parentElement.parentElement.parentNode.parentElement;
+            var index = postLocation.children.length -1;
+
+
+            // for (var i = postLocation.length - 1; i >= 0; i--) {
+            //   postLocation[i]
+            // }
+
+            postLocation.insertBefore(divCommentMedia, postLocation.lastElementChild);
+             
+           //  eventInfo.currentTarget.parentElement.parentElement.parentNode.parentElement.appendChild(divCommentMedia); 
+           //  insertBefore(sp1, sp2)
+
+           //  newPost = eventInfo.currentTarget.parentElement.parentElement.parentNode.parentElement.childNodes[1];
+           // // eventInfo.currentTarget.parentElement.parentElement.parentNode.parentElement.insertBefore(newPost, eventInfo.currentTarget.parentElement.parentElement.parentNode.parentElement.lastElementChild);
+           //  eventInfo.currentTarget.parentElement.parentElement.parentNode.parentElement.appendChild(newPost); 
 
        //     insertBefore(newPost, eventInfo.currentTarget.parentElement.parentElement.parentNode.parentElement.lastElementChild);
 
                //  document.getElementsByClassName("comment__info")[4].appendChild(newPost);    
 
-           debugger;
+      
           }
 
         //  eventInfo.currentTarget.parentElement.parentElement.parentNode.parentElement.children.length - 1
@@ -77,6 +143,7 @@ window.addEventListener("load", function(){
   var commentLikeButton = document.getElementsByClassName("comment__info");
       for (var e = 0; e < commentLikeButton.length; e++){
         commentLikeButton[e].childNodes[1].addEventListener("click", function() { 
+           event.preventDefault();      
            eventInfo = window.event;
            currentLikes = parseInt(eventInfo.currentTarget.parentNode.childNodes[5].innerHTML.replace("likes", ""));
            if (eventInfo.currentTarget.parentNode.childNodes[1].text == "Like"){
@@ -107,6 +174,7 @@ window.addEventListener("load", function(){
    var showReplies = document.getElementsByClassName("comment__info");
       for (var e = 0; e < showReplies.length; e++){
         showReplies[e].childNodes[3].addEventListener("click", function() {            
+              event.preventDefault();
               eventInfo = window.event;
               replies = eventInfo.currentTarget.parentNode.parentNode.childNodes[5];
               if (replies.style.display == "none"){
@@ -135,8 +203,8 @@ window.addEventListener("load", function(){
   ///   CLOSES MODAL FROM BUTTON
     var modalCloseButton = document.getElementsByClassName("modal__close");
         modalCloseButton[0].addEventListener("click", function() {
-                      modal = document.getElementsByClassName("modal");
-                              modal[0].style.display = "none";
+              modal = document.getElementsByClassName("modal");
+              modal[0].style.display = "none";
         });
 
   //// CLOSES MODAL FROM CLICKING BEHIND WINDOW
@@ -144,9 +212,10 @@ window.addEventListener("load", function(){
 
     var modalCloseBG = document.getElementsByClassName("modal");
         modalCloseBG[0].addEventListener("click", function() {
-                  
-              
-              if (event.target == modalCloseBG[0]){
+              eventInfo = window.event;
+              modalContentWindow = document.getElementsByClassName("modal__content");
+         
+              if (eventInfo.target == modalCloseBG[0]){
                 modal[0].style.display = "none";
               }
                 // if (event.target != modalCloseBG[0].childNodes[1]){
