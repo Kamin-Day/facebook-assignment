@@ -32,7 +32,7 @@ The overall goal is to implement features that listen for user actions that trig
 
 - show the modal window with their name as the title and their number of friends as the body
 
-### Clicking 'Share' should...
+@@@@@@### Clicking 'Share' should...
 
 - show the modal window with 'Share _____'s post' (fill in the blank with the post owner's name) as the title and the post's content as the modal's body
 
